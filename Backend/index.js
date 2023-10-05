@@ -1,10 +1,13 @@
 const express = require("express")
+var cors = require('cors')
 const {connected} = require("./db")
 const { userRouter } = require("./routes/User.routes")
 const { auth } = require("./Middleware/auth.middle")
 const { birthDayRoute } = require("./routes/birthday.routes")
-const app = express()
 const port = 8080
+
+const app = express()
+app.use(cors())
 app.use(express.json())
 
 app.use("/user",userRouter)
@@ -22,5 +25,4 @@ app.listen(port,async()=>{
     } catch (error) {
         console.log("Error in index.js app.listen ")
     }
-   
 })
